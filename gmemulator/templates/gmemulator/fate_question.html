@@ -8,5 +8,8 @@ Mythic GM Emulator - Fate Question
 {% block content %}
 <h1>Ask a Fate Question</h1>
 
+{% load crispy_forms_tags %}
+{% crispy form form.helper %}
+
 <p>{{question}}</p>
 {% endblock content %}
