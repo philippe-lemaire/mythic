@@ -9,7 +9,22 @@ Mythic GM Emulator - Fate Question
 <h1>Ask a Fate Question</h1>
 
 {% load crispy_forms_tags %}
-{% crispy form form.helper %}
 
-<p>{{question}}</p>
+<form method="post" action="{% url 'gmemulator:fate_question' %}">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        {{ form.odds|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ form.chaos_factor|as_crispy_field }}
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Roll on the Face Chart</button>
+</form>
+
+
+<p>Roll: {{roll}}</p>
+<p>Answer: {{answer}}</p>
 {% endblock content %}
