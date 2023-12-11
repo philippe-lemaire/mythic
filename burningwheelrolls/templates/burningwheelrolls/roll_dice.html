@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+
+<h1>Burning Wheel Test Tool</h1>
+
+<br>
+
+{% load crispy_forms_tags %}
+{% crispy form %}
+
+{% if rolls %}
+<br><br>
+{% for die in rolls %}
+<img src="{% static 'rolls/img/' %}{{shade}}/{{die}}.png " />
+{% endfor %}
+<br><br>
+<h2>Result</h2>
+<p>{{ result }}</p>
+
+<h2>Difficulty</h2>
+<p>{{difficulty}}</p>
+{% endif %}
+
+{% if 6 in rolls and not used_luck and not open_ended %}
+
+<h2>Spend Artha to get Lucky</h2>
+
+<p>Your roll included at least a 6. By spending a Fate point, you can can make the roll open ended and roll one die for
+    each 6 you had, and an extra die for each new 6 you get.</p>
+
+<form action="{% url 'burningwheelrolls:roll_luck' %}" method="post">
+    {% csrf_token %}
+
+    <input type="submit" value="Spend a Fate Point.">
+</form>
+{% endif %}
+{% endblock %}

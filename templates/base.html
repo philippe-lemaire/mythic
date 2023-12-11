@@ -12,7 +12,7 @@
     <!-- local CSS -->
     {% load static %}
      <link rel="stylesheet" href="{% static 'generators/styles.css' %}">
-        <title>{% block title %}Knave 2nd Edition Generators{% endblock %}</title>
+        <title>{% block title %}Django GM Emulator {% endblock %}</title>
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👺</text></svg>">
     <meta name="robots" content="noindex">
@@ -38,10 +38,17 @@
                     </a>
                     <div class="dropdown-menu">
                     <a class="dropdown-item" href="{% url 'gmemulator:fate_question' %}">Ask a Fate Question</a>
-
                     </div>
                 </li>
-
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                    role="button" aria-haspopup="true" aria-expanded="false">Burning Wheel
+                    </a>
+                    <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'burningwheelrolls:roll_dice' %}">Roll Dice</a>
+                    <a class="dropdown-item" href="{% url 'burningwheelrolls:assess_difficulty' %}">Assess Difficulty</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

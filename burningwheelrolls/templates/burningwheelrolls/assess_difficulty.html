@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+
+<h1>Burning Wheel Assess Difficulty</h1>
+
+<br>
+{% load crispy_forms_tags %}
+{% crispy form %}
+
+
+{% if difficulty %}
+<br>
+
+<h2>Difficulty</h2>
+<p>{{difficulty}}</p>
+
+{% endif %}
+
+{% endblock %}

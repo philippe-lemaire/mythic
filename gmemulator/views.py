@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import FateQuestionForm
 from .fate_chart import fate_chart
 from .roll import roll_d100
+from .events import get_event_focus
 
 
 def fate_question(request):
@@ -15,7 +16,7 @@ def fate_question(request):
             mini, threshold, maxi = fate_chart.get(odd)[chaos_factor - 1]
             dice = roll_d100()
             # just for testing
-
+            dice = 11
             if dice <= mini:
                 answer = "Exceptional Yes!"
             elif dice <= threshold:
@@ -27,7 +28,7 @@ def fate_question(request):
             # check for event
 
             if dice > 10 and len(set(str(dice))) == 1 and dice % 10 <= chaos_factor:
-                context["event"] = "Random Event"
+                context["event"] = get_event_focus()
             context["roll"] = dice
             context["answer"] = answer
 
